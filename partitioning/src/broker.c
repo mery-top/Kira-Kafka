@@ -2,30 +2,6 @@
 #include <stdlib.h>
 #include "../include/broker.h"
 
-/*
-
-typedef struct{
-    Topic *topics;
-    int topic_count;
-} Broker;
-
-typedef struct{
-    char* messages[MAX_MESSAGES];
-    int count;
-} Partition;
-
-typedef struct{
-    char name[64];
-    Partition partitions[MAX_PARTITIONS];
-    int partition_count;
-    int rr_index;
-} Topic;
-
-Broker* create_broker();
-Topic* get_topic(Broker* broker, char* name);
-void add_topic(Broker *broker, char* name, int partition_count);
-*/
-
 Broker* create_broker(){
     Broker* broker = malloc(sizeof(Broker));
     broker->topics = NULL;
