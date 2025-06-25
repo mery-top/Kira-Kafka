@@ -5,7 +5,7 @@
 void produce_message(Broker* broker, char* topic_name, char* message){
     Topic *topic = get_topic(broker, topic_name);
     if (!topic) {
-        printf("❌ Topic %s not found.\n", topic_name);
+        printf("Topic %s not found.\n", topic_name);
         return;
     }
 

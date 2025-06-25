@@ -8,4 +8,4 @@ typedef struct{
     int thread_id;
 }ConsumerArgs;
 
-//Consumer void* args
+void* consume_messages(void *args);
