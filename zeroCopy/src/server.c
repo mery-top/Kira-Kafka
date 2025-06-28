@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <netinet/in.h>
-#include <sys/sendfile.h>
+#include <sys/socket.h> //linux sendfile()
 #include <sys/stat.h>
 #include "../include/server.h"
 
@@ -16,7 +16,7 @@ void start_server(char* filepath, int port){
         .sin_port = htons(port)
     };
 
-    bind(server_fd, (struct socketaddr*)&addr, sizeof(addr));
+    bind(server_fd, (struct sockaddr*)&addr, sizeof(addr));
     listen(server_fd, 1);
 
     printf("Server Listening at Port %d\n", port);
@@ -36,7 +36,20 @@ void start_server(char* filepath, int port){
         fstat(file_fd, &st);
         off_t offset = 0;
 
-        sendfile(client_fd, file_fd, &offset, st.st_size);
+        /*{ FOR MAC
+        sendfile(
+        int fd,              // file descriptor to read from
+        int sock,            // socket to write to
+        off_t offset,        // starting offset in file
+        off_t *len,          // pointer to number of bytes to send
+        struct sf_hdtr *hd,  // can be NULL (for HTTP headers/trailers)
+        int flags            // can be 0
+    );
+
+        }*/
+        
+        sendfile(file_fd, client_fd, 0, &st.st_size, NULL, 0); //Mac
+        //sendfile(client_fd, file_fd, &offset, st.st_size); linux
         close(file_fd);
         close(client_fd);
         printf("Sent %ld bytes from %s using zero-copy", (long)st.st_size, filepath);

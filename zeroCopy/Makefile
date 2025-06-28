@@ -1,8 +1,8 @@
 CC = gcc
 SRC = main.c \
-Kira-kafka/partitioning/include/broker.h \
-Kira-kafka/partitioning/include/producer.h \
-include/server.h
+../partitioning/src/broker.c \
+../partitioning/src/producer.c \
+src/server.c
 
 OUT = kafka_sim
 
