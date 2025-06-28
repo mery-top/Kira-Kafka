@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../include/producer.h"
 
 void produce_message(Broker* broker, char* topic_name, char* message){

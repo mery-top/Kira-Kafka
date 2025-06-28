@@ -17,7 +17,7 @@ void* consume_messages(void *args){
     int last_read = 0;
 
     while(1){
-        if(last_read < p->partition_count){
+        if(last_read < p->count){
             printf("Thread %d of Consumer Topic %s is reading [%s] from partition %d", 
             cargs->thread_id, cargs->topic_name, p->messages[last_read], cargs->partition_id);
             last_read++;

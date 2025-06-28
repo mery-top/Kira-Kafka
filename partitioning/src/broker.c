@@ -11,7 +11,7 @@ Broker* create_broker(){
 }
 
 Topic* get_topic(Broker* broker, char* name){
-    for(int i=0; i<broker.topic_count; i++){
+    for(int i=0; i<broker->topic_count; i++){
         if(strcmp(broker->topics[i].name, name) == 0){
             return &broker->topics[i];
         }

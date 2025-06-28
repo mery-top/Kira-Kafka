@@ -2,9 +2,9 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../include/broker.h"
-#include "../include/consumer.h"
-#include "../include/producer.h"
+#include "include/broker.h"
+#include "include/consumer.h"
+#include "include/producer.h"
 
 #define NUM_THREADS 4
 
@@ -14,7 +14,11 @@ int main(){
     add_topic(broker, "logs",2);
 
     produce_message(broker, "orders", "Order1");
-    produce_message(broker, "logs", "log-1");
+    produce_message(broker, "logs", "Login");
+    produce_message(broker, "orders", "Order2");
+    produce_message(broker, "logs", "SignUp");
+    produce_message(broker, "orders", "Order3");
+    produce_message(broker, "logs", "Logout");
 
 
     pthread_t threads[NUM_THREADS];
