@@ -3,27 +3,6 @@
 #include <pthread.h>
 #include "../include/consumer.h"
 
-/*
-typedef struct{
-    Broker* broker;
-    char* topic_name;
-    int partition_id;
-    int thread_id;
-}ConsumerArgs;
-
-typedef struct{
-    char* messages[MAX_MESSAGES];
-    int count;
-} Partition;
-
-typedef struct{
-    char name[64];
-    Partition partitions[MAX_PARTITIONS];
-    int partition_count;
-    int rr_index;
-} Topic;
-*/
-
 void* consume_messages(void *args){
     ConsumerArgs* cargs = (ConsumerArgs *)args;
     Broker* broker = cargs->broker;
