@@ -21,5 +21,24 @@ void start_server(char* filepath, int port){
 
     printf("Server Listening at Port %d\n", port);
 
-    
+    while(1){
+        int client_fd = accept(server_fd, NULL, NULL);
+        printf("Client connected sending the file %s\n", filepath);
+
+        int file_fd = open(filepath, O_RDONLY);
+        if(file_fd<0){
+            perror("open");
+            close(client_fd);
+            continue;
+        }
+
+        struct stat st;
+        fstat(file_fd, &st);
+        off_t offset = 0;
+
+        sendfile(client_fd, file_fd, &offset, st.st_size);
+        close(file_fd);
+        close(client_fd);
+        printf("Sent %ld bytes from %s using zero-copy", (long)st.st_size, filepath);
+    }
 }
