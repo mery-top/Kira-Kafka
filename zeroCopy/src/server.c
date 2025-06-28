@@ -50,8 +50,9 @@ void start_server(char* filepath, int port){
         
         sendfile(file_fd, client_fd, 0, &st.st_size, NULL, 0); //Mac
         //sendfile(client_fd, file_fd, &offset, st.st_size); linux
+        printf("Sent %ld bytes from %s using zero-copy", (long)st.st_size, filepath);
         close(file_fd);
         close(client_fd);
-        printf("Sent %ld bytes from %s using zero-copy", (long)st.st_size, filepath);
+       
     }
 }

@@ -4,7 +4,7 @@ SRC = main.c \
 ../partitioning/src/producer.c \
 src/server.c
 
-OUT = kafka_sim
+OUT = kafka_zeroCopy
 
 $(OUT): $(SRC)
 	$(CC) $(SRC) -o $(OUT)
