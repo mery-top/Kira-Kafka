@@ -40,3 +40,23 @@ void* network_io_thread(void *args){
     return NULL;
 }
 
+void* log_flush_thread(void *args){
+    int core_id = *((int*)args);
+    bind_thread_to_core(core_id);
+
+    FILE *f = fopen("logs.txt", "a");
+    if(!f) return NULL;
+
+    int count =0;
+    while(1){
+        fprintf(f, "Log flush entry #%d at time %ld\n", count, time(NULL));
+        printf("[Log Flush] moving data to disk after sleep(2)\n");
+        fflush(f);
+        sleep(2);
+    }
+
+    fclose(f);
+
+    return NULL;
+}
+
