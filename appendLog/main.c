@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "../partitioning/include/broker.h"
-#include "../partitioning/include/producer.h"
 #include "include/logger.h"
 
 int main(){
