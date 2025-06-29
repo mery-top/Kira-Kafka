@@ -78,78 +78,41 @@ make
 make run
 ```
 
-## 🛠️ How It Works (Kafka Internals Recreated)
-
-This section explains how Kira-Kafka recreates key Kafka features at the OS and systems level.
-
----
-
-### 1. 📦 Topics & Partitions
-
-Each `Topic` contains **N partitions**, and incoming messages are dispatched using a **round-robin strategy**.
-
-> ✅ Mimics Kafka’s producer partitioning logic
-
----
-
-### 2. 🧾 Append-Only Logs
-
-Messages are stored in an **append-only format** like Kafka's commit log.
-
-```
-data/orders-0/00000000000000000000.log
-data/orders-0/00000000000000000000.index
-data/orders-0/00000000000000000000.timeindex
-```
----
-
-### 3. 📤 Zero-Copy Reads
-To optimize throughput, Kira-Kafka uses Linux’s sendfile() syscall to send data directly from disk to socket, bypassing user space.
-
-```
-sendfile(fd_socket, fd_file, &offset, len);
-```
-🧠 Eliminates user-kernel copy steps → faster log fetches.
-
----
-### 4. 🗃 Memory-Mapped Reads
-Instead of traditional read(), Kira-Kafka uses mmap() for efficient, on-demand log access.
-
-```
-void* mapped = mmap(NULL, length, PROT_READ, MAP_SHARED, fd, 0);
-```
-Lazily loads log data into memory, backed by the OS page cache.
-
----
-### 5. 🔄 Log Flusher (Durability)
-A dedicated background thread periodically flushes log data from user-space buffers to disk for durability:
-
-```
-fflush(f);
-fsync(fileno(f));
-```
-Ensures write-behind logs are safely persisted like Kafka’s flush daemon.
-
----
-
-### 6. 🧵 Thread-to-Core Mapping
-To simulate Kafka's I/O concurrency model, threads are pinned to CPU cores using:
-
-```
-pthread_setaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
-```
-Mimics Kafka’s use of Java NIO, background I/O, and consumer thread pools with OS-level CPU affinity.
-
----
-
 ## 📚 Discussions & Wiki
 
-### 🤔 Have questions or ideas?
+## 🤔 Have questions or ideas?
 Start a discussion here:
 👉 GitHub Discussions
 
 ### 📘 Internal Docs
-Check the Wiki for:
+Check the Wiki for: [Kira-Kafka Wiki](https://github.com/mery-top/Kira-Kafka/wiki)
+
+## 🧠 Wiki Page: Kafka-Inspired Features Explained
+
+The [Kira-Kafka Wiki](https://github.com/mery-top/Kira-Kafka/wiki) contains detailed, developer-friendly documentation of the core concepts and how they map to Kafka's design.
+
+### 🧩 Feature Documentation
+
+| Feature                    | Wiki Page Link |
+|----------------------------|----------------|
+| 📦 Topics & Partitioning   | [Topic & Partitioning](https://github.com/mery-top/Kira-Kafka/wiki/Features-of-Kafka#-1-zero-copy-via-sendfile)  
+| 🧾 Append-Only Logs        | [Append-Only Logging](https://github.com/mery-top/Kira-Kafka/wiki/Features-of-Kafka#%EF%B8%8F-2-disk-based-sequential-log-appending)  
+| 📤 Zero-Copy Reads         | [Zero-Copy with sendfile()](https://github.com/mery-top/Kira-Kafka/wiki/Features-of-Kafka#-1-zero-copy-via-sendfile)  
+| 🗃 Memory-Mapped Reads     | [Memory-Mapped Files](https://github.com/mery-top/Kira-Kafka/wiki/Features-of-Kafka#-3-memory-mapped-files-mmap)  
+| 🔄 Log Flusher             | [Flush Daemon & Durability](https://github.com/mery-top/Kira-Kafka/wiki/Features-of-Kafka#-6-log-segments--index-files)  
+| 🧵 Thread-to-Core Mapping  | [Thread Affinity](https://github.com/mery-top/Kira-Kafka/wiki/Features-of-Kafka#-5-thread-to-core-mapping-for-performance)  
+
+> 💡 Each page includes C code explanations, OS-level syscalls used, and comparisons to Kafka’s internal handling.
+
+---
+
+### 📖 Want to Contribute to the Wiki?
+
+1. Go to the [Wiki tab](https://github.com/mery-top/Kira-Kafka/wiki)
+2. Click **"New Page"**
+3. Add your content and submit
+
+
 
 Architecture diagrams
 OS-level optimization explanations
