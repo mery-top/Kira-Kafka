@@ -27,3 +27,16 @@ void bind_thread_to_core(int core_id){
         prinf("Thread %lu bound to core %d", current, core_id);
     }
 }
+
+void* network_io_thread(void *args){
+    int core_id = *((int*) args);
+    bind_thread_to_core(core_id);
+
+    while(1){
+        printf("[Net I/O Thread] simulating async socket I/O")
+        sleep(1);
+    }
+
+    return NULL;
+}
+
