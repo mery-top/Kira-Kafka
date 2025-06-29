@@ -50,12 +50,24 @@ void* log_flush_thread(void *args){
     int count =0;
     while(1){
         fprintf(f, "Log flush entry #%d at time %ld\n", count, time(NULL));
-        printf("[Log Flush] moving data to disk after sleep(2)\n");
+        printf("[Log Flush Thread] moving data to disk after sleep(2)\n");
         fflush(f);
         sleep(2);
     }
 
     fclose(f);
+
+    return NULL;
+}
+
+void* consumer_thread(void *args){
+    int core_id = *((int*)args);
+    bind_thread_to_core(core_id);
+
+    while(1){
+        printf("[Consumer Thread] consuming messages from partition\n");
+        sleep(1);
+    }
 
     return NULL;
 }
