@@ -21,10 +21,10 @@ void bind_thread_to_core(int core_id){
     CPU_SET(core_id, &cpuset);
 
     pthread_t current = pthread_self();
-    if(pthread_setaffinity_np(current, sizeof(cpu_set_t), &cpuset)!=0){
+    if((pthread_setaffinity_np(current, sizeof(cpu_set_t), &cpuset))!=0){
         perror("setaffinity error");
     }else{
-        prinf("Thread %lu bound to core %d", current, core_id);
+        printf("Thread %lu bound to core %d", (long)current, core_id);
     }
 }
 
@@ -33,7 +33,7 @@ void* network_io_thread(void *args){
     bind_thread_to_core(core_id);
 
     while(1){
-        printf("[Net I/O Thread] simulating async socket I/O")
+        printf("[Net I/O Thread] simulating async socket I/O");
         sleep(1);
     }
 
