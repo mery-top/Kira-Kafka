@@ -21,7 +21,30 @@ void append_message_to_log(Partition* p, char* message){
     int idx_fd = open(index_file, O_WRONLY | O_APPEND | O_CREAT, 0644);
     int time_fd = open(timeindex_file, O_WRONLY | O_APPEND | O_CREAT, 0644);
 
-    
+    if(log_fd < 0){
+        perror("open error");
+        return;
+    }
 
+    off_t offset = lseek(log_fd, 0 , SEEK_END);
+    size_t len = strlen(message);
+
+    write(log_fd, message, len);
+    write(log_fd, "\n", 1);
+
+    dprintf(idx_fd, "%llu,%lld\n", p->log_offset, (long long)offset);
+
+    time_t now = time(NULL);
+    dprintf(time_fd, "%ld%lld\n", now, (long long)offset);
+
+    fsync(log_fd);
+    fsync(idx_fd);
+    fsync(time_fd);
+
+    close(log_fd);
+    close(idx_fd);
+    close(time_fd);
+
+    p->log_offset++;
 
 }
