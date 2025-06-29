@@ -26,7 +26,7 @@ Welcome to **Kira-Kafka**, lightweight, and educational **Kafka-like distributed
 ## 📁 Project Structure
 
 ```
-KIRA-KAFKA/
+KIRA-KAFKA/src
 ├── appendLog/
 │   ├── include/             # Headers for append-only log
 │   ├── src/                 # C source files for disk logging
