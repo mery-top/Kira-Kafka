@@ -21,16 +21,10 @@ Welcome to **Kira-Kafka**, a blazing-fast, lightweight, and educational **Kafka-
 
 ---
 
-## 🧱 Project Structure
-
-```bash
 ## 📁 Project Structure
 
-```bash
-## 📁 Project Structure
-
-```bash
-KIRA-KAFKA/
+```
+KIRA-KAFKA/src
 ├── appendLog/
 │   ├── include/             # Headers for append-only log
 │   ├── src/                 # C source files for disk logging
@@ -76,7 +70,7 @@ KIRA-KAFKA/
 
 ### 🔧 Build
 
-```bash
+```
 cd (required directory)
 make
 make run
@@ -110,7 +104,7 @@ To contribute:
 4. **Implement** your feature or bug fix  
 5. **Submit a Pull Request (PR)** with a clear message and screenshot if applicable
 
-```bash
+```
 git clone https://github.com/mery-top/kira-kafka.git
 cd kira-kafka
 git checkout -b feature/my-improvement
