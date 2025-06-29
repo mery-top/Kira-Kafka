@@ -23,16 +23,9 @@ Welcome to **Kira-Kafka**, lightweight, and educational **Kafka-like distributed
 | **Open Source Friendly**         | Community-driven, well-documented, modular structure     |
 
 ---
-
-## 🧱 Project Structure
-
-```bash
 ## 📁 Project Structure
 
-```bash
-## 📁 Project Structure
-
-```bash
+```
 KIRA-KAFKA/
 ├── appendLog/
 │   ├── include/             # Headers for append-only log
@@ -79,7 +72,7 @@ KIRA-KAFKA/
 
 ### 🔧 Build
 
-```bash
+```
 cd (required directory)
 make
 make run
@@ -103,7 +96,7 @@ Each `Topic` contains **N partitions**, and incoming messages are dispatched usi
 
 Messages are stored in an **append-only format** like Kafka's commit log.
 
-```bash
+```
 data/orders-0/00000000000000000000.log
 data/orders-0/00000000000000000000.index
 data/orders-0/00000000000000000000.timeindex
@@ -177,7 +170,7 @@ To contribute:
 4. **Implement** your feature or bug fix  
 5. **Submit a Pull Request (PR)** with a clear message and screenshot if applicable
 
-```bash
+```
 git clone https://github.com/mery-top/kira-kafka.git
 cd kira-kafka
 git checkout -b feature/my-improvement
