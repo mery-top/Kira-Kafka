@@ -26,6 +26,7 @@ void add_topic(Broker* broker, char* name, int partition_count){
     t->partition_count = partition_count;
     for(int i =0; i<partition_count; i++){
         t->partitions[i].count =0;
+        t->partitions[i].log_offset=0;
     }
 
     broker->topic_count++;

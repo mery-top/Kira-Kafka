@@ -5,6 +5,7 @@
 typedef struct{
     char* messages[MAX_MESSAGES];
     int count;
+    unsigned long long log_offset;
 } Partition;
 
 typedef struct{
