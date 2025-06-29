@@ -37,7 +37,7 @@ void append_message_to_log(Partition* p, char* message){
     dprintf(idx_fd, "%llu,%lld\n", p->log_offset, (long long)offset);
 
     time_t now = time(NULL);
-    dprintf(time_fd, "%ld%lld\n", now, (long long)offset);
+    dprintf(time_fd, "%ld,%lld\n", now, (long long)offset);
 
     fsync(log_fd);
     fsync(idx_fd);
