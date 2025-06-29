@@ -18,7 +18,7 @@ void read_log_with_mmap(char* filepath){
     fstat(fd, &st);
 
     size_t length = st.st_size;
-    char *mapped = mmap(NULL, length, PROT_READ, MAP_SHARED, 0);
+    char *mapped = mmap(NULL, length, PROT_READ, MAP_SHARED, fd, 0);
     if(mapped == MAP_FAILED){
         perror("map error");
         close(fd);
