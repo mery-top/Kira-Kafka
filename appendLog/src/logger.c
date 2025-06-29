@@ -15,9 +15,9 @@ void append_message_to_log(Partition* p, char* message){
     //Segment Rotation
     uint64_t base_offset = (p->log_offset/2)*2;
 
-    snprintf(log_file, sizeof(log_file), "%s/%020llu.log", "temp/order1", p->log_offset);
-    snprintf(index_file, sizeof(index_file), "%s/%020llu.index", "temp/order1", p->log_offset);
-    snprintf(timeindex_file, sizeof(timeindex_file), "%s/%020llu.timeindex", "temp/order1", p->log_offset);
+    snprintf(log_file, sizeof(log_file), "%s/%020llu.log", "temp/order1", base_offset);
+    snprintf(index_file, sizeof(index_file), "%s/%020llu.index", "temp/order1", base_offset);
+    snprintf(timeindex_file, sizeof(timeindex_file), "%s/%020llu.timeindex", "temp/order1", base_offset);
 
     int log_fd = open(log_file, O_WRONLY | O_APPEND | O_CREAT, 0644);
     int idx_fd = open(index_file, O_WRONLY | O_APPEND | O_CREAT, 0644);
