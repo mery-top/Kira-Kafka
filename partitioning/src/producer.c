@@ -16,7 +16,8 @@ void produce_message(Broker* broker, char* topic_name, char* message){
     if(p->count < MAX_MESSAGES){
         p->messages[p->count++] = strdup(message);
         printf("Message %s sent to topic %s, partition %d\n", message, topic_name, index);
-        p->log_offset++;
+        //you can call the append message logs function here;
+        // p->log_offset++;
         topic->rr_index = (topic->rr_index +1) % (topic->partition_count);
     }else{
         printf("Partition %d of topic %s is full", index,topic_name);
