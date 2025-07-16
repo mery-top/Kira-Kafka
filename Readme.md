@@ -1,4 +1,4 @@
-# ⚙️ Kira-Kafka — A Kafka-Inspired System in C
+# ⚙️ Kira-Kafka — A Distributed Log System in C
 
 ![Kira-Kafka Architecture](logo.png)
 
