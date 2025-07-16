@@ -1,4 +1,4 @@
-# ⚙️ Kira-Kafka — A Minimal Kafka-Inspired System in C
+# ⚙️ Kira-Kafka — A Kafka-Inspired System in C
 
 ![Kira-Kafka Architecture](logo.png)
 
