@@ -3,7 +3,7 @@
 ![Kira-Kafka Architecture](logo.png)
 
 
-Welcome to **Kira-Kafka**, lightweight, and educational **Kafka-like distributed log system** written in pure C. This project mimics the core architecture of Apache Kafka — covering **topics**, **partitions**, **message brokers**, **disk-backed logs**, **zero-copy reads**, **memory-mapped I/O**, **thread-to-core mapping**, and **log compression**.
+Welcome to **Kira-Kafka**, lightweight, and educational **distributed log system** written in pure C. This project mimics the core architecture of Apache Kafka — covering **topics**, **partitions**, **message brokers**, **disk-backed logs**, **zero-copy reads**, **memory-mapped I/O**, **thread-to-core mapping**, and **log compression**.
 
 > 🔬 Designed for learning, systems programming enthusiasts, and OS-level Kafka internals.
 
